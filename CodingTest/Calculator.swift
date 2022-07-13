@@ -10,12 +10,13 @@ import Foundation
 struct Calculator {
   // 소인수 분해
   func getFactorization(_ num: Int) -> [Int] {
-    var count = 1
-    let number = num
-    var factorizationArray = [Int]()
+    var count = 2
+    var number = num
+    var factorizationArray = [1]
     
     while count <= number {
-      if number % count == 0 {
+      while number % count == 0 {
+        number = number / count
         factorizationArray.append(count)
       }
       count += 1
@@ -37,9 +38,10 @@ struct Calculator {
   
   // 최소 공배수
   func GetLeastCommonMultiple(firstArray: [Int], secondArray: [Int]) -> Int {
-    let union = firstArray + secondArray
-    let Deduplication = Set(union)
-    let leastCommonMultiple = Deduplication.reduce(1, *)
+    
+    let leastCommonMultiple = firstArray.reduce(1, *) * secondArray.reduce(1, *) / GetgreatestCommonFactor(firstArray: firstArray, secondArray: firstArray)
+    
     return leastCommonMultiple
   }
 }
+
